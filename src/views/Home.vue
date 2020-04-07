@@ -5,7 +5,12 @@
     <!-- <h1>{{ recipes }}</h1> -->
     <!-- recipes.each do |recipe| -->
     <div v-bind:key="recipe.id" v-for="recipe in recipes">
-      <p>{{ recipe.id }}. {{ recipe.title }}</p>
+      <p>title: {{ recipe.title }}</p>
+      <p>ingredients: {{ recipe.ingredients }}</p>
+      <p>image url: {{ recipe.image_url }}</p>
+      <img v-bind:src="recipe.image_url">
+      <hr>
+      
     </div>
   </div>
 </template>
