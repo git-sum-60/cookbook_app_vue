@@ -2,6 +2,11 @@
   <div class="home">
     <h1>{{ message }}</h1>
     <h1>{{ name }}</h1>
+    <p>Title: <input type="text" v-model="newRecipeTitle"></p>
+    <p>Ingredients: <input type="text" v-model="newRecipeIngredients"></p>
+    <p>Directions: <input type="text" v-model="newRecipeDirections"></p>
+    <p>PrepTime: <input type="text" v-model="newRecipePrepTime"></p>
+    <p>ImageUrl: <input type="text" v-model="newRecipeImageUrl"></p>
     <button v-on:click="addRecipe()">Add a new recipe</button>
     <!-- <h1>{{ recipes }}</h1> -->
     <!-- recipes.each do |recipe| -->
@@ -27,7 +32,12 @@ export default {
     return {
       message: "Welcome to Vue.js!",
       name: "brian",
-      recipes: []
+      recipes: [],
+      newRecipeTitle: "",
+      newRecipeIngredients: "",
+      newRecipeDirections: "",
+      newRecipePrepTime: "",
+      newRecipeImageUrl: ""
     };
   },
   created: function() {
@@ -41,20 +51,25 @@ export default {
   },
   methods: {
     addRecipe: function() {
-      console.log('adding the recipe')
+      console.log(this.newRecipeTitle)
       // get some data
       var params = {
-        input_title: "Grapes",
-        input_ingredients: "time + vines",
-        input_directions: "trim the vines?",
-        input_prep_time: 20,
-        input_image_url: "https://www.thepacker.com/sites/default/files/Grapes_Red_web_.jpg"
+        input_title: this.newRecipeTitle,
+        input_ingredients: this.newRecipeIngredients,
+        input_directions: this.newRecipeDirections,
+        input_prep_time: this.newRecipePrepTime,
+        input_image_url: this.newRecipeImageUrl
       }
 
       // send it to rails
       axios.post("/api/recipes", params).then(response => {
         console.log(response.data);
         this.recipes.push(response.data)
+        this.newRecipeTitle = "";
+        this.newRecipeIngredients = "";
+        this.newRecipeDirections = "";
+        this.newRecipePrepTime = "";
+        this.newRecipeImageUrl = "";
       })
 
 
