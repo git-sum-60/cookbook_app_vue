@@ -14,12 +14,17 @@
       <p>title: {{ recipe.title }}</p>
       <p>ingredients: {{ recipe.ingredients }}</p>
       <p>image url: {{ recipe.image_url }}</p>
-      <img v-bind:src="recipe.image_url">
+      <button v-on:click="showInfo(recipe)">Show more info</button>
+      <div v-if="currentRecipe === recipe">
+        <p>directions: {{ recipe.directions }}</p>
+        <p>prep_time: {{ recipe.prep_time }}</p>
+        <img v-bind:src="recipe.image_url">
+      </div>
       <hr>
-      
     </div>
   </div>
 </template>
+
 
 <style>
 </style>
@@ -37,7 +42,8 @@ export default {
       newRecipeIngredients: "",
       newRecipeDirections: "",
       newRecipePrepTime: "",
-      newRecipeImageUrl: ""
+      newRecipeImageUrl: "",
+      currentRecipe: {}
     };
   },
   created: function() {
@@ -46,6 +52,7 @@ export default {
     console.log("this outside callback")
     axios.get("/api/recipes").then(response => {
       console.log("this inside callback")
+      console.log(response.data)
       this.recipes = response.data;
     })
   },
@@ -71,9 +78,11 @@ export default {
         this.newRecipePrepTime = "";
         this.newRecipeImageUrl = "";
       })
-
-
-      // add the new data to the html page
+    },
+    showInfo: function(theRecipe) {
+      console.log('showing info...')
+      console.log(theRecipe)
+      this.currentRecipe = theRecipe;
     }
   }
 };
