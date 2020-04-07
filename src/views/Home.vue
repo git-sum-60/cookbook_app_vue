@@ -1,18 +1,38 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>{{ message }}</h1>
+    <h1>{{ name }}</h1>
+    <!-- <h1>{{ recipes }}</h1> -->
+    <!-- recipes.each do |recipe| -->
+    <div v-bind:key="recipe.id" v-for="recipe in recipes">
+      <p>{{ recipe.id }}. {{ recipe.title }}</p>
+    </div>
   </div>
 </template>
 
+<style>
+</style>
+
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import axios from "axios";
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+  data: function() {
+    return {
+      message: "Welcome to Vue.js!",
+      name: "brian",
+      recipes: []
+    };
+  },
+  created: function() {
+    console.log('in the created');
+
+    console.log("this outside callback")
+    axios.get("/api/recipes").then(response => {
+      console.log("this inside callback")
+      this.recipes = response.data;
+    })
+  },
+  methods: {}
+};
 </script>
