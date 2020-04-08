@@ -29,6 +29,9 @@
         <p>chef: <input type="text" v-model="recipe.chef"></p>
 
         <button v-on:click="updateRecipe(recipe)">Update this recipe</button>
+        <div>
+          <button v-on:click="deleteRecipe(recipe)">Delete Recipe</button>
+        </div>
       </div>
       <hr>
     </div>
@@ -112,6 +115,23 @@ export default {
       axios.patch(`/api/recipes/${theRecipe.id}`, params).then(response => {
         console.log(response.data);
         theRecipe = response.data;
+      })
+
+    },
+    deleteRecipe: function(theRecipe) {
+      console.log(theRecipe);
+      console.log('deleting the recipe..')
+      // make the web request to rails
+      axios.delete('/api/recipes/' + theRecipe.id).then(response => {
+        console.log(response.data)
+        // 
+        // remove this from the page
+
+        // find the index of that recipe
+        var index = this.recipes.indexOf(theRecipe)
+        
+        // delete at that index
+        this.recipes.splice(index, 1)
       })
 
     }
