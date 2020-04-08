@@ -11,6 +11,7 @@
     <!-- <h1>{{ recipes }}</h1> -->
     <!-- recipes.each do |recipe| -->
     <div v-bind:key="recipe.id" v-for="recipe in recipes">
+      <p>id: {{ recipe.id }}</p>
       <p>title: {{ recipe.title }}</p>
       <p>ingredients: {{ recipe.ingredients }}</p>
       <p>image url: {{ recipe.image_url }}</p>
@@ -19,6 +20,15 @@
         <p>directions: {{ recipe.directions }}</p>
         <p>prep_time: {{ recipe.prep_time }}</p>
         <img v-bind:src="recipe.image_url">
+
+        <p>Title: <input type="text" v-model="recipe.title"></p>
+        <p>directions: <input type="text" v-model="recipe.directions"></p>
+        <p>ingredients: <input type="text" v-model="recipe.ingredients"></p>
+        <p>prep_time: <input type="text" v-model="recipe.prep_time"></p>
+        <p>image_url: <input type="text" v-model="recipe.image_url"></p>
+        <p>chef: <input type="text" v-model="recipe.chef"></p>
+
+        <button v-on:click="updateRecipe(recipe)">Update this recipe</button>
       </div>
       <hr>
     </div>
@@ -83,6 +93,27 @@ export default {
       console.log('showing info...')
       console.log(theRecipe)
       this.currentRecipe = theRecipe;
+    },
+    updateRecipe: function(theRecipe) {
+      console.log('update recipe')
+
+      console.log(theRecipe)
+
+      var params = {        
+        title: theRecipe.title,
+        ingredients: theRecipe.ingredients,  
+        image_url: theRecipe.image_url,  
+        directions: theRecipe.directions,  
+        prep_time: theRecipe.prep_time,  
+        image_url: theRecipe.image_url,
+        chef: theRecipe.chef
+      }
+
+      axios.patch(`/api/recipes/${theRecipe.id}`, params).then(response => {
+        console.log(response.data);
+        theRecipe = response.data;
+      })
+
     }
   }
 };
