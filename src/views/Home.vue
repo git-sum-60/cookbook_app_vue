@@ -61,6 +61,7 @@ export default {
   },
   created: function() {
     console.log('in the created');
+    console.log(localStorage.getItem("jwt"));
 
     console.log("this outside callback")
     axios.get("/api/recipes").then(response => {
