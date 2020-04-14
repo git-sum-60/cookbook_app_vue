@@ -8,6 +8,7 @@ import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import RecipesIndex from "../views/RecipesIndex.vue";
 import RecipesNew from "../views/RecipesNew.vue";
+import RecipesShow from "../views/RecipesShow.vue";
 
 
 Vue.use(VueRouter)
@@ -32,6 +33,11 @@ Vue.use(VueRouter)
     path: "/logout", 
     name: "logout", 
     component: Logout 
+  },
+  { 
+    path: "/recipes/:id", 
+    name: "recipes-show", 
+    component: RecipesShow
   },
   {
     path: '/recipes',
