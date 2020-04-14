@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Test from '../views/Test.vue'
+import SecondTest from '../views/SecondTest.vue'
+import Signup from "../views/Signup.vue";
 
 Vue.use(VueRouter)
 
@@ -11,10 +13,20 @@ Vue.use(VueRouter)
     name: 'Home',
     component: Home
   },
+  { 
+    path: "/signup", 
+    name: "signup", 
+    component: Signup 
+  },
   {
     path: '/test',
     name: 'test',
     component: Test
+  },
+  {
+    path: '/second-test',
+    name: 'second-test',
+    component: SecondTest
   },
   {
     path: '/about',
