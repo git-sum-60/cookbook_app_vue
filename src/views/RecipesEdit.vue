@@ -65,8 +65,8 @@ export default {
         title: this.recipe.title,
         ingredients: this.recipe.ingredients,
         directions: this.recipe.directions,
-        prep_time: this.recipe.prepTime,
-        image_url: this.recipe.imageUrl
+        prep_time: this.recipe.prep_time,
+        image_url: this.recipe.image_url
       };
 
       console.log('params')

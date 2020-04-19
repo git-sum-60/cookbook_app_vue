@@ -7,6 +7,7 @@
     <a v-bind:href="`/recipes/${recipe.id}/edit`">Edit this Recipe</a>
     <h1>image_url: {{ recipe.image_url }}</h1>
     <img v-bind:src="recipe.image_url">
+    
   </div>
 </template>
 
