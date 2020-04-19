@@ -31,6 +31,11 @@
         </div>
         <input type="submit" class="btn btn-primary" value="Submit">
       </form>
+
+      <br>
+      <br>
+      <br>
+      <button v-on:click="deleteRecipe()">Delete this recipe</button>
     </div>
   </div>
 </template>
@@ -74,6 +79,16 @@ export default {
         .catch(error => {
           this.errors = error.response.data.errors;
         });
+    },
+    deleteRecipe: function() {
+      console.log('deleting the recipe...')
+      // find the id of the recipe
+      // this.recipe.id
+      // make the appropriate requet to rails 
+      axios.delete(`/api/recipes/${this.recipe.id}`).then(response => {
+        console.log(response.data)
+        this.$router.push('/recipes')
+      })
     }
   }
 };

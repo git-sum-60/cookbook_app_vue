@@ -4,6 +4,7 @@
     <h1>ingredients: {{ recipe.ingredients }}</h1>
     <h1>directions: {{ recipe.directions }}</h1>
     <h1>prep_time: {{ recipe.prep_time }}</h1>
+    <a v-bind:href="`/recipes/${recipe.id}/edit`">Edit this Recipe</a>
     <h1>image_url: {{ recipe.image_url }}</h1>
     <img v-bind:src="recipe.image_url">
   </div>
