@@ -34,20 +34,20 @@ Vue.use(VueRouter)
     name: "logout", 
     component: Logout 
   },
-  { 
-    path: "/recipes/:id", 
-    name: "recipes-show", 
-    component: RecipesShow
-  },
   {
-    path: '/recipes',
+    path: "/recipes",
     name: "recipes-index",
     component: RecipesIndex
   },
   {
-    path: '/recipes/new',
+    path: "/recipes/new",
     name: "recipes-new",
     component: RecipesNew
+  },
+  { 
+    path: "/recipes/:id", 
+    name: "recipes-show", 
+    component: RecipesShow
   },
   {
     path: '/test',

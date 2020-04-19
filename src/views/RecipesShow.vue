@@ -5,6 +5,7 @@
     <h1>directions: {{ recipe.directions }}</h1>
     <h1>prep_time: {{ recipe.prep_time }}</h1>
     <h1>image_url: {{ recipe.image_url }}</h1>
+    <img v-bind:src="recipe.image_url">
   </div>
 </template>
 

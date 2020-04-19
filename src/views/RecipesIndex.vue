@@ -2,7 +2,7 @@
   <div class="recipes-index">
     <h1>{{ message }}</h1>
     <div v-for="recipe in recipes">
-      <p>title: {{ recipe.title }}</p>
+      <p>title: <a v-bind:href="`/recipes/${recipe.id}`">{{ recipe.title }}</a></p>
       <p>ingredients: {{ recipe.ingredients }}</p>
       <p>directions: {{ recipe.directions }}</p>
       <p>prep_time: {{ recipe.prep_time }}</p>
