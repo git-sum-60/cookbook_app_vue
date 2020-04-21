@@ -16,6 +16,7 @@
   .selected {
     color: white;
     background-color: steelBlue;
+    transition: background-color 4s ease;
   }
 </style>
 
