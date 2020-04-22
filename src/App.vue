@@ -1,45 +1,123 @@
 <template>
   <div id="app">
-    <div id="nav">      
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <!-- Wrapper -->
+<div id="wrapper">
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/recipes">Recipes index <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/recipes/new">New Recipe</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Auth
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a v-if="!isLoggedIn()" class="dropdown-item" href="/login">Login</a>
-                <a v-if="isLoggedIn()" class="dropdown-item" href="/logout">Logout</a>
-                <div class="dropdown-divider"></div>
-                <a v-if="!isLoggedIn()" class="dropdown-item" href="/signup">Signup</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="titleFilter">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>      
+  <!-- Main -->
+    <div id="main">
+      <div class="inner">
+
+        <!-- Header -->
+          <header id="header">
+            <a href="index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>
+            <ul class="icons">
+              <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+              <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+              <li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+              <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+              <li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+            </ul>
+          </header>
+
+          <router-view />
+
+
+      </div>
     </div>
-    <p v-if="isLoggedIn()">I am Logged in</p>
-    <p v-else-if="!isLoggedIn()">I am NOT Logged in</p>
-    <router-view/>
+
+  <!-- Sidebar -->
+    <div id="sidebar">
+      <div class="inner">
+
+        <!-- Search -->
+          <section id="search" class="alt">
+            <form method="post" action="#">
+              <input type="text" name="query" id="query" placeholder="Search" />
+            </form>
+          </section>
+
+        <!-- Menu -->
+          <nav id="menu">
+            <header class="major">
+              <h2>Menu</h2>
+            </header>
+            <ul>
+              <li><a href="/recipes">Homepage</a></li>
+              <li><a href="/recipes/new">Make a new Recipe</a></li>
+              <li><a href="/login">Login</a></li>
+              <li>
+                <span class="opener">Submenu</span>
+                <ul>
+                  <li><a href="#">Lorem Dolor</a></li>
+                  <li><a href="#">Ipsum Adipiscing</a></li>
+                  <li><a href="#">Tempus Magna</a></li>
+                  <li><a href="#">Feugiat Veroeros</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Etiam Dolore</a></li>
+              <li><a href="#">Adipiscing</a></li>
+              <li>
+                <span class="opener">Another Submenu</span>
+                <ul>
+                  <li><a href="#">Lorem Dolor</a></li>
+                  <li><a href="#">Ipsum Adipiscing</a></li>
+                  <li><a href="#">Tempus Magna</a></li>
+                  <li><a href="#">Feugiat Veroeros</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Maximus Erat</a></li>
+              <li><a href="#">Sapien Mauris</a></li>
+              <li><a href="#">Amet Lacinia</a></li>
+            </ul>
+          </nav>
+
+        <!-- Section -->
+          <section>
+            <header class="major">
+              <h2>Ante interdum</h2>
+            </header>
+            <div class="mini-posts">
+              <article>
+                <a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+                <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+              </article>
+              <article>
+                <a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+                <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+              </article>
+              <article>
+                <a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+                <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+              </article>
+            </div>
+            <ul class="actions">
+              <li><a href="#" class="button">More</a></li>
+            </ul>
+          </section>
+
+        <!-- Section -->
+          <section>
+            <header class="major">
+              <h2>Get in touch</h2>
+            </header>
+            <p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+            <ul class="contact">
+              <li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
+              <li class="icon solid fa-phone">(000) 000-0000</li>
+              <li class="icon solid fa-home">1234 Somewhere Road #8254<br />
+              Nashville, TN 00000-0000</li>
+            </ul>
+          </section>
+
+        <!-- Footer -->
+          <footer id="footer">
+            <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+          </footer>
+
+      </div>
+    </div>
+
+</div>
   </div>
 </template>
 
