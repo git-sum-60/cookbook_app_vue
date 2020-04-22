@@ -44,13 +44,7 @@
 </template>
 
 <style>
-  #app {
-    font-family: Futura,"Trebuchet MS",Arial,sans-serif;
-  }
-
-  body {
-    background-image: url('./assets/purty_wood.png')
-  }
+ 
 </style>
 
 
