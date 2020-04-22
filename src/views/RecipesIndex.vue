@@ -1,7 +1,8 @@
 <template>
   <div class="recipes-index">
     <h1>{{ message }}</h1>
-    <div v-for="recipe in recipes" v-on:click="currentRecipe = recipe" v-bind:class="{selected: currentRecipe === recipe}">
+    <!-- Find your recipe here: <input type="text" v-model="titleFilter"> -->
+    <div v-for="recipe in filterBy(recipes, $parent.titleFilter, 'title')" v-on:click="currentRecipe = recipe" v-bind:class="{selected: currentRecipe === recipe}">
       <p>title: <a v-bind:href="`/recipes/${recipe.id}`">{{ recipe.title }}</a></p>
       <p>ingredients: {{ recipe.ingredients }}</p>
       <p>directions: {{ recipe.directions }}</p>
@@ -21,13 +22,18 @@
 </style>
 
 <script>
+import Vue2Filters from "vue2-filters"
+
+
 import axios from "axios";
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
       message: "Welcome to Vue.js!",
       recipes: [],
-      currentRecipe: {}
+      currentRecipe: {},
+      titleFilter: ''
     };
   },
   created: function() {
