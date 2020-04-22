@@ -6,6 +6,7 @@
         <ul>
           <li class="text-danger" v-for="error in errors">{{ error }}</li>
         </ul>
+        <img v-if="status" v-bind:src="`https://http.cat/${status}`">
         <div class="form-group">
           <label>Name:</label> 
           <input type="text" class="form-control" v-model="name">
@@ -41,7 +42,8 @@ export default {
       email: "",
       password: "",
       passwordConfirmation: "",
-      errors: []
+      errors: [],
+      status: ""
     };
   },
   methods: {
@@ -59,6 +61,7 @@ export default {
         })
         .catch(error => {
           this.errors = error.response.data.errors;
+          this.status = error.response.status
         });
     }
   }
