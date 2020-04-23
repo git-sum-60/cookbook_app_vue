@@ -1,8 +1,14 @@
 <template>
   <div class="recipes-index">
     <h1>{{ message }}</h1>
-    <!-- Find your recipe here: <input type="text" v-model="titleFilter"> -->
-    <div v-for="recipe in filterBy(recipes, $parent.titleFilter, 'title')" v-on:click="currentRecipe = recipe" v-bind:class="{selected: currentRecipe === recipe}">
+    Find your recipe here: <input type="text" v-model="titleFilter" list="titles">
+
+    <datalist id="titles">
+      <option v-for="recipe in recipes">{{recipe.title}}</option>
+      
+    </datalist>
+    
+    <div v-for="recipe in filterBy(recipes, titleFilter, 'title', 'ingredients')" v-on:click="currentRecipe = recipe" v-bind:class="{selected: currentRecipe === recipe}">
       <p>title: <a v-bind:href="`/recipes/${recipe.id}`">{{ recipe.title }}</a></p>
       <p>ingredients: {{ recipe.ingredients }}</p>
       <p>directions: {{ recipe.directions }}</p>
