@@ -11,18 +11,21 @@
     <button v-on:click="setSortAttribute('title')">Sort by title</button>
     <button v-on:click="setSortAttribute('ingredients')">Sort by ingredients</button>
 
-    <div 
-      v-for="recipe in orderBy(filterBy(recipes, titleFilter, 'title'), sortAttribute, 1)" 
-      v-on:click="currentRecipe = recipe" 
-      v-bind:class="{selected: currentRecipe === recipe}"
-    >
-      <p>title: <a v-bind:href="`/recipes/${recipe.id}`">{{ recipe.title }}</a></p>
-      <p>ingredients: {{ recipe.ingredients }}</p>
-      <p>directions: {{ recipe.directions }}</p>
-      <p>prep_time: {{ recipe.prep_time }}</p>
-      <p>image_url: {{ recipe.image_url }}</p>
-      <hr>
-    </div>
+    <transition-group appear enter-active-class="animated jello" leave-active-class="animated rubberBand">
+      <div 
+        v-for="recipe in orderBy(filterBy(recipes, titleFilter, 'title'), sortAttribute, 1)" 
+        v-on:click="currentRecipe = recipe" 
+        v-bind:class="{selected: currentRecipe === recipe}"
+        v-bind:key="recipe.id"
+      >
+        <p>title: <a v-bind:href="`/recipes/${recipe.id}`">{{ recipe.title }}</a></p>
+        <p>ingredients: {{ recipe.ingredients }}</p>
+        <p>directions: {{ recipe.directions }}</p>
+        <p>prep_time: {{ recipe.prep_time }}</p>
+        <p>image_url: {{ recipe.image_url }}</p>
+        <hr>
+      </div>
+    </transition-group>
   </div>
 </template>
 
