@@ -5,14 +5,17 @@
 
     <datalist id="titles">
       <option v-for="recipe in recipes">{{recipe.title}}</option>
-      
     </datalist>
     
-    <button v-on:click="setSortAttribute()">Sort by prep_time</button>
-    <button>Sort by title</button>
-    <button>Sort by ingredients</button>
+    <button v-on:click="setSortAttribute('prep_time')">Sort by prep_time</button>
+    <button v-on:click="setSortAttribute('title')">Sort by title</button>
+    <button v-on:click="setSortAttribute('ingredients')">Sort by ingredients</button>
 
-    <div v-for="recipe in orderBy(recipes, sortAttribute, 1)" v-on:click="currentRecipe = recipe" v-bind:class="{selected: currentRecipe === recipe}">
+    <div 
+      v-for="recipe in orderBy(filterBy(recipes, titleFilter, 'title'), sortAttribute, 1)" 
+      v-on:click="currentRecipe = recipe" 
+      v-bind:class="{selected: currentRecipe === recipe}"
+    >
       <p>title: <a v-bind:href="`/recipes/${recipe.id}`">{{ recipe.title }}</a></p>
       <p>ingredients: {{ recipe.ingredients }}</p>
       <p>directions: {{ recipe.directions }}</p>
@@ -44,7 +47,7 @@ export default {
       recipes: [],
       currentRecipe: {},
       titleFilter: '',
-      sortAttribute: "title"
+      sortAttribute: "directions"
     };
   },
   created: function() {
@@ -54,9 +57,10 @@ export default {
     })
   },
   methods: {
-    setSortAttribute: function() {
+    setSortAttribute: function(attribute) {
+      console.log(attribute);
       console.log('setting sort attribute...')
-      this.sortAttribute = 'ingredients'
+      this.sortAttribute = attribute;
     }
   }
 };
